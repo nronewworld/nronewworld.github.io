@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NRO New World - Update Log</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 20px;
+            min-height: calc(100vh - 40px);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+
+        .sidebar h1 {
+            font-size: 24px;
+            color: #667eea;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .sidebar .subtitle {
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .menu-section {
+            margin-bottom: 25px;
+        }
+
+        .menu-section h3 {
+            font-size: 14px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .menu-item {
+            padding: 12px 15px;
+            margin-bottom: 5px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #333;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .menu-item:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .menu-item.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .menu-item::before {
+            content: "📄";
+            font-size: 16px;
+        }
+
+        /* Content Area */
+        .content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .content-header h2 {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .content-header .date {
+            color: #999;
+            font-size: 14px;
+        }
+
+        .update-section {
+            display: none;
+        }
+
+        .update-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .update-card {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .update-card:hover {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transform: translateX(5px);
+        }
+
+        .update-card h3 {
+            color: #667eea;
+            font-size: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .update-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .update-card li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .update-card li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .badge.new {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .badge.update {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+
+        .badge.fix {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            color: white;
+        }
+
+        /* Code Block */
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+
+        /* Table */
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .info-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .info-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+            color: #555;
+        }
+
+        .info-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: relative;
+                top: 0;
+            }
+
+            .content {
+                padding: 25px;
+            }
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .empty-state svg {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        .empty-state h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .empty-state p {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h1>📚 NRO New World</h1>
+            <div class="subtitle">Update Documentation</div>
+
+            <div class="menu-section">
+                <h3>📋 Updates</h3>
+                <div class="menu-item active" data-section="latest">Latest Updates</div>
+                <div class="menu-item" data-section="system">System Updates</div>
+                <div class="menu-item" data-section="gameplay">Gameplay Changes</div>
+                <div class="menu-item" data-section="items">Items & Equipment</div>
+                <div class="menu-item" data-section="skills">Skills & Classes</div>
+            </div>
+
+            <div class="menu-section">
+                <h3>🎮 Features</h3>
+                <div class="menu-item" data-section="pvp">PvP/GvG System</div>
+                <div class="menu-item" data-section="events">Events</div>
+                <div class="menu-item" data-section="quests">Quests & NPCs</div>
+            </div>
+
+            <div class="menu-section">
+                <h3>🔧 Technical</h3>
+                <div class="menu-item" data-section="bugfix">Bug Fixes</div>
+                <div class="menu-item" data-section="database">Database Changes</div>
+                <div class="menu-item" data-section="config">Server Config</div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <!-- Latest Updates Section -->
+            <div class="update-section active" id="latest">
+                <div class="content-header">
+                    <h2>🆕 Latest Updates</h2>
+                    <div class="date">อัพเดทล่าสุด: 22 มกราคม 2569</div>
+                </div>
+
+                <div class="update-card">
+                    <h3>🎯 Update Highlights <span class="badge new">NEW</span></h3>
+                    
+                    <!-- Hero Image -->
+                    <div style="margin: 20px 0; border-radius: 15px; overflow: hidden; box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4); border: 3px solid #667eea;">
+                        <img src="images/nro-bg.png" alt="NRO New World" style="width: 100%; display: block;">
+                    </div>
+
+                    <ul>
+                        <li>NRO EP 4.0 Pre-Renewal พร้อม AI BY.ปะปา</li>
+                        <li>CBT เริ่ม 23 มกราคม 2569</li>
+                        <li>OBT เริ่ม 30 มกราคม 2569</li>
+                        <li>ระบบ BotAI ให้ผู้เล่นหาแคชได้จากในเกม</li>
+                        <li>ระบบป้องกันบอทนอก OPK Auto ครบครัน</li>
+                    </ul>
+                </div>
+
+                <div class="update-card">
+                    <h3>📊 Server Information</h3>
+                    <table class="info-table">
+                        <tr>
+                            <th>รายการ</th>
+                            <th>รายละเอียด</th>
+                        </tr>
+                        <tr>
+                            <td>📅 CBT</td>
+                            <td>23 มกราคม 2569</td>
+                        </tr>
+                        <tr>
+                            <td>🚀 OBT</td>
+                            <td>30 มกราคม 2569</td>
+                        </tr>
+                        <tr>
+                            <td>📖 Episode</td>
+                            <td>4.0 Pre-Renewal</td>
+                        </tr>
+                        <tr>
+                            <td>⚔️ Max Level</td>
+                            <td>99 / 50</td>
+                        </tr>
+                        <tr>
+                            <td>🏰 เมืองหลวง</td>
+                            <td>Morocc</td>
+                        </tr>
+                        <tr>
+                            <td>🌐 เว็บไซต์</td>
+                            <td><a href="http://www.nro-ro.com/" target="_blank" style="color: #667eea; text-decoration: none;">www.nro-ro.com</a></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="update-card">
+                    <h3>⭐ อัตราคูณค่าประสบการณ์</h3>
+                    <ul>
+                        <li>EXP & JOB x1 (Base Rate)</li>
+                        <li>Level 85-90: เก็บเพิ่ม 2 เท่า</li>
+                        <li>Level 90-95: เก็บเพิ่ม 3 เท่า</li>
+                        <li>Level 95-99: เก็บเพิ่ม 5 เท่า</li>
+                        <li>ตายเสีย EXP 5%</li>
+                        <li>ถูกหาร FLEE เมื่อถูกมอนสเตอร์รุม 5 ตัวขึ้นไป</li>
+                        <li>ถูกหาร DEF เมื่อถูกมอนสเตอร์รุม 5 ตัวขึ้นไป</li>
+                        <li>มอนสเตอร์ทั่วไป และบอส ใช้สกิลได้</li>
+                    </ul>
+                </div>
+
+                <div class="update-card">
+                    <h3>💎 อัตราดรอป</h3>
+                    <table class="info-table">
+                        <tr>
+                            <th>ประเภทไอเทม</th>
+                            <th>อัตราดรอป</th>
+                        </tr>
+                        <tr>
+                            <td>ETC / Usable / Healing</td>
+                            <td>x0.5</td>
+                        </tr>
+                        <tr>
+                            <td>Card (ทั่วไป)</td>
+                            <td>x2.5</td>
+                        </tr>
+                        <tr>
+                            <td>Equipment (ทั่วไป)</td>
+                            <td>x1.0</td>
+                        </tr>
+                        <tr>
+                            <td>Boss / MVP Card</td>
+                            <td>x1.0</td>
+                        </tr>
+                        <tr>
+                            <td>Boss / MVP Equipment</td>
+                            <td>x1.0</td>
+                        </tr>
+                    </table>
+                    <ul>
+                        <li>อัตราการดรอปสูงสุด 60%</li>
+                        <li>บอทลดดรอป 50% และเก็บของช้ากว่าคนปกติ</li>
+                        <li>มีระบบตรวจจับบอทติดตาม</li>
+                    </ul>
+                </div>
+
+                <div class="update-card">
+                    <h3>🛡️ ระบบป้องกัน</h3>
+                    <ul>
+                        <li>จำกัดการเล่น 3 จอต่อ 1 เครื่อง</li>
+                        <li>ระบบป้องกันบอทนอก OPK Auto ต่างๆ</li>
+                        <li>ระบบป้องกันดาต้า ตัดอีโม และการโกงต่างๆ</li>
+                    </ul>
+                </div>
+
+                <div class="update-card">
+                    <h3>💰 วิธีการหาแคช</h3>
+                    <ul>
+                        <li>🎲 ทอยเต๋า (Dice Game)</li>
+                        <li>🎣 ตกปลา (Fishing System)</li>
+                        <li>🃏 การ์ด (Card System)</li>
+                        <li>🎉 กิจกรรมที่แอดมินจัดขึ้น (GM Events)</li>
+                    </ul>
+                </div>
+
+                <div class="update-card">
+                    <h3>💼 ระบบเปลี่ยนอาชีพ</h3>
+                    <ul>
+                        <li>ต้องหาไอเทมและของเพื่อทำการเปลี่ยนอาชีพ</li>
+                        <li>ใช้กับทั้ง Class 1 และ Class 2</li>
+                        <li>เพิ่มความท้าทายและความสนุกในการเล่น</li>
+                    </ul>
+                </div>
+
+                <div class="update-card">
+                    <h3>🎯 จุดประสงค์การทำเซิฟ</h3>
+                    <ul>
+                        <li>พยายามให้ทุกคนเล่นได้อย่างเท่าเทียมกัน</li>
+                        <li>BotAI สำหรับวัยทำงานที่อยากสนุกแต่ไม่มีเวลา</li>
+                        <li>สร้างชุมชนที่แข็งแรงและยุติธรรม</li>
+                    </ul>
+                </div>
+
+                <div class="update-card">
+                    <h3>🔗 ช่องทางติดตาม</h3>
+                    <ul>
+                        <li>🌐 เว็บไซต์หลัก: <a href="http://www.nro-ro.com/" target="_blank" style="color: #667eea; text-decoration: none; font-weight: 600;">www.nro-ro.com</a></li>
+                        <li>📘 แฟนเพจ: <a href="https://shorturl.asia/UdMyw" target="_blank" style="color: #667eea; text-decoration: none; font-weight: 600;">Facebook Page</a></li>
+                        <li>💬 กลุ่มซื้อขาย: <a href="https://discord.gg/tRZ9bqRcXn" target="_blank" style="color: #667eea; text-decoration: none; font-weight: 600;">Discord</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- System Updates Section -->
+            <div class="update-section" id="system">
+                <div class="content-header">
+                    <h2>⚙️ System Updates</h2>
+                    <div class="date">การอัพเดทระบบ</div>
+                </div>
+
+                <div class="update-card">
+                    <h3>🎯 [Option Master] <span class="badge new">NEW</span></h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start; margin-top: 20px;">
+                        <div>
+                            <ul>
+                                <li>ซ้ำสามารถเพิ่ม Option อุปกรณ์ได้</li>
+                                <li>ใช้เงิน 20000 zeny และ Option Stone 5 ชิ้น 🪙</li>
+                                <li>โอกาสสำเร็จอยู่ที่ 50%</li>
+                                <li>ป้าจำนวนออพชั่นโดดเพิ่มทะลุได้เพียง 1 เท่านั้น</li>
+                                <li>สามารถออพชั่นทุกชิ้นที่เชื่อมออพชั่นได้เป็นปกติรับเพียบ</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <img src="images/option-master.png" alt="Option Master NPC" style="width: 100%; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); border: 3px solid #667eea;">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="update-card">
+                    <h3>🔄 System Improvements <span class="badge update">UPDATE</span></h3>
+                    <ul>
+                        <li>เพิ่มระบบ Option Master สำหรับเพิ่มออพชั่นอุปกรณ์</li>
+                        <li>ปรับปรุงระบบการสุ่มออพชั่นให้มีความยุติธรรม</li>
+                        <li>เพิ่มประสิทธิภาพการทำงานของ NPC</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Gameplay Changes Section -->
+            <div class="update-section" id="gameplay">
+                <div class="content-header">
+                    <h2>🎮 Gameplay Changes</h2>
+                    <div class="date">การเปลี่ยนแปลงเกมเพลย์</div>
+                </div>
+
+                <div class="update-card">
+                    <h3>⚔️ Combat Balance <span class="badge update">UPDATE</span></h3>
+                    <ul>
+                        <li>ปรับดุลยภาพการต่อสู้...</li>
+                        <li>แก้ไขอัตราความเสียหาย...</li>
+                        <li>ปรับค่า Status...</li>
+                    </ul>
+                </div>
+
+                <div class="empty-state">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    <h3>เพิ่มรายละเอียดได้ที่นี่</h3>
+                    <p>สามารถเพิ่มข้อมูล Gameplay Changes เพิ่มเติมในภายหลัง</p>
+                </div>
+            </div>
+
+            <!-- Items & Equipment Section -->
+            <div class="update-section" id="items">
+                <div class="content-header">
+                    <h2>🎒 Items & Equipment</h2>
+                    <div class="date">ไอเทมและอุปกรณ์</div>
+                </div>
+
+                <div class="update-card">
+                    <h3>✨ Gold Majestic Costume Set <span class="badge new">NEW</span></h3>
+                    
+                    <!-- Hero Image -->
+                    <div style="margin: 20px 0; text-align: center;">
+                        <img src="images/costume-ingame.png" alt="Gold Majestic Costume Set In-Game" style="max-width: 100%; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); border: 3px solid #667eea;">
+                    </div>
+
+                    <p style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 15px; border-radius: 8px; margin: 20px 0; font-weight: 600; text-align: center;">
+                        🎁 คอสตูมฟรีสำหรับผู้สนับสนุนเซิฟ NRO ทุก 1,000 บาท
+                    </p>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 30px;">
+                        
+                        <!-- Costume 1: Gold Majestic Goat -->
+                        <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); border: 2px solid #667eea;">
+                            <div style="text-align: center; margin-bottom: 15px;">
+                                <img src="images/costume-gold-goat.png" alt="Costume Gold Majestic Goat" style="max-width: 100%; border-radius: 8px;">
+                            </div>
+                            <h4 style="color: #667eea; margin-bottom: 10px; font-size: 16px;">🎭 Costume Gold Majestic Goat</h4>
+                            <p style="color: #666; font-size: 14px; margin-bottom: 8px;"><strong>ตำแหน่ง:</strong> ส่วนหัว</p>
+                            <p style="color: #666; font-size: 14px; margin-bottom: 12px;"><strong>อาชีพที่ใช้ได้:</strong> All</p>
+                            
+                            <div style="background: #f8f9fa; padding: 12px; border-radius: 6px; margin-bottom: 10px;">
+                                <p style="font-weight: 600; color: #333; margin-bottom: 8px; font-size: 13px;">คุณสมบัติไอเทม:</p>
+                                <ul style="list-style: none; padding: 0; margin: 0; font-size: 13px; color: #555;">
+                                    <li style="padding: 3px 0;">• เพิ่ม EXP <span style="color: #f5576c; font-weight: 600;">+5%</span></li>
+                                    <li style="padding: 3px 0;">• เพิ่ม Drop <span style="color: #f5576c; font-weight: 600;">+5%</span></li>
+                                    <li style="padding: 3px 0;">• เพิ่ม HP & SP <span style="color: #f5576c; font-weight: 600;">+5%</span></li>
+                                    <li style="padding: 3px 0;">• เพิ่มน้ำหนักสูงสุด <span style="color: #f5576c; font-weight: 600;">+500</span></li>
+                                </ul>
+                            </div>
+                            
+                            <div style="background: #fff3cd; padding: 12px; border-radius: 6px;">
+                                <p style="font-weight: 600; color: #856404; margin-bottom: 8px; font-size: 13px;">คุณสมบัติคอลเลคชั่น:</p>
+                                <ul style="list-style: none; padding: 0; margin: 0; font-size: 13px; color: #856404;">
+                                    <li style="padding: 3px 0;">• เพิ่ม HP & SP <span style="font-weight: 600;">+2%</span></li>
+                                    <li style="padding: 3px 0;">• เพิ่ม ATK & MATK <span style="font-weight: 600;">+2</span></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Costume 2: Spotlight -->
+                        <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); border: 2px solid #667eea;">
+                            <div style="text-align: center; margin-bottom: 15px;">
+                                <img src="images/costume-spotlight.png" alt="Costume Spotlight" style="max-width: 100%; border-radius: 8px;">
+                            </div>
+                            <h4 style="color: #667eea; margin-bottom: 10px; font-size: 16px;">👁️ Costume Spotlight</h4>
+                            <p style="color: #666; font-size: 14px; margin-bottom: 8px;"><strong>ตำแหน่ง:</strong> ส่วนตา</p>
+                            <p style="color: #666; font-size: 14px; margin-bottom: 12px;"><strong>อาชีพที่ใช้ได้:</strong> All</p>
+                            
+                            <div style="background: #f8f9fa; padding: 12px; border-radius: 6px; margin-bottom: 10px;">
+                                <p style="font-weight: 600; color: #333; margin-bottom: 8px; font-size: 13px;">คุณสมบัติไอเทม:</p>
+                                <ul style="list-style: none; padding: 0; margin: 0; font-size: 13px; color: #555;">
+                                    <li style="padding: 3px 0;">• เพิ่ม EXP <span style="color: #f5576c; font-weight: 600;">+5%</span></li>
+                                    <li style="padding: 3px 0;">• เพิ่ม Drop <span style="color: #f5576c; font-weight: 600;">+5%</span></li>
+                                    <li style="padding: 3px 0;">• เพิ่ม HP & SP <span style="color: #f5576c; font-weight: 600;">+5%</span></li>
+                                    <li style="padding: 3px 0;">• เพิ่มน้ำหนักสูงสุด <span style="color: #f5576c; font-weight: 600;">+500</span></li>
+                                </ul>
+                            </div>
+                            
+                            <div style="background: #fff3cd; padding: 12px; border-radius: 6px;">
+                                <p style="font-weight: 600; color: #856404; margin-bottom: 8px; font-size: 13px;">คุณสมบัติคอลเลคชั่น:</p>
+                                <ul style="list-style: none; padding: 0; margin: 0; font-size: 13px; color: #856404;">
+                                    <li style="padding: 3px 0;">• เพิ่ม HP & SP <span style="font-weight: 600;">+2%</span></li>
+                                    <li style="padding: 3px 0;">• เพิ่ม ATK & MATK <span style="font-weight: 600;">+2</span></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Costume 3: Fire Muffler -->
+                        <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); border: 2px solid #667eea;">
+                            <div style="text-align: center; margin-bottom: 15px;">
+                                <img src="images/costume-fire-muffler.png" alt="Costume Fire Muffler" style="max-width: 100%; border-radius: 8px;">
+                            </div>
+                            <h4 style="color: #667eea; margin-bottom: 10px; font-size: 16px;">🔥 Costume Fire Muffler</h4>
+                            <p style="color: #666; font-size: 14px; margin-bottom: 8px;"><strong>ตำแหน่ง:</strong> ส่วนปาก</p>
+                            <p style="color: #666; font-size: 14px; margin-bottom: 12px;"><strong>อาชีพที่ใช้ได้:</strong> All</p>
+                            
+                            <div style="background: #f8f9fa; padding: 12px; border-radius: 6px; margin-bottom: 10px;">
+                                <p style="font-weight: 600; color: #333; margin-bottom: 8px; font-size: 13px;">คุณสมบัติไอเทม:</p>
+                                <ul style="list-style: none; padding: 0; margin: 0; font-size: 13px; color: #555;">
+                                    <li style="padding: 3px 0;">• เพิ่ม EXP <span style="color: #f5576c; font-weight: 600;">+5%</span></li>
+                                    <li style="padding: 3px 0;">• เพิ่ม Drop <span style="color: #f5576c; font-weight: 600;">+5%</span></li>
+                                    <li style="padding: 3px 0;">• เพิ่ม HP & SP <span style="color: #f5576c; font-weight: 600;">+5%</span></li>
+                                    <li style="padding: 3px 0;">• เพิ่มน้ำหนักสูงสุด <span style="color: #f5576c; font-weight: 600;">+500</span></li>
+                                </ul>
+                            </div>
+                            
+                            <div style="background: #fff3cd; padding: 12px; border-radius: 6px;">
+                                <p style="font-weight: 600; color: #856404; margin-bottom: 8px; font-size: 13px;">คุณสมบัติคอลเลคชั่น:</p>
+                                <ul style="list-style: none; padding: 0; margin: 0; font-size: 13px; color: #856404;">
+                                    <li style="padding: 3px 0;">• เพิ่ม HP & SP <span style="font-weight: 600;">+2%</span></li>
+                                    <li style="padding: 3px 0;">• เพิ่ม ATK & MATK <span style="font-weight: 600;">+2</span></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Costume 4: Sky Golden Angel Wings -->
+                        <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); border: 2px solid #667eea;">
+                            <div style="text-align: center; margin-bottom: 15px;">
+                                <img src="images/costume-sky-wings.png" alt="Costume Sky Golden Angel Wings" style="max-width: 100%; border-radius: 8px;">
+                            </div>
+                            <h4 style="color: #667eea; margin-bottom: 10px; font-size: 16px;">👼 Costume Sky Golden Angel Wings</h4>
+                            <p style="color: #666; font-size: 14px; margin-bottom: 8px;"><strong>ตำแหน่ง:</strong> ผ้าคลุม</p>
+                            <p style="color: #666; font-size: 14px; margin-bottom: 12px;"><strong>อาชีพที่ใช้ได้:</strong> All</p>
+                            
+                            <div style="background: #f8f9fa; padding: 12px; border-radius: 6px; margin-bottom: 10px;">
+                                <p style="font-weight: 600; color: #333; margin-bottom: 8px; font-size: 13px;">คุณสมบัติไอเทม:</p>
+                                <ul style="list-style: none; padding: 0; margin: 0; font-size: 13px; color: #555;">
+                                    <li style="padding: 3px 0;">• เพิ่ม EXP <span style="color: #f5576c; font-weight: 600;">+5%</span></li>
+                                    <li style="padding: 3px 0;">• เพิ่ม Drop <span style="color: #f5576c; font-weight: 600;">+5%</span></li>
+                                    <li style="padding: 3px 0;">• เพิ่ม HP & SP <span style="color: #43e97b; font-weight: 600;">+10%</span></li>
+                                    <li style="padding: 3px 0;">• เพิ่มน้ำหนักสูงสุด <span style="color: #43e97b; font-weight: 600;">+1000</span></li>
+                                </ul>
+                            </div>
+                            
+                            <div style="background: #d4edda; padding: 12px; border-radius: 6px;">
+                                <p style="font-weight: 600; color: #155724; margin-bottom: 8px; font-size: 13px;">คุณสมบัติคอลเลคชั่น:</p>
+                                <ul style="list-style: none; padding: 0; margin: 0; font-size: 13px; color: #155724;">
+                                    <li style="padding: 3px 0;">• เพิ่ม All Status <span style="font-weight: 600;">+1</span></li>
+                                    <li style="padding: 3px 0;">• เพิ่ม ATK & MATK <span style="font-weight: 600;">+2%</span></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div style="margin-top: 30px; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 10px; color: white;">
+                        <h4 style="margin-bottom: 15px; font-size: 18px;">✨ สรุปโบนัสเมื่อสวมครบเซต</h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                            <div>
+                                <p style="font-weight: 600; margin-bottom: 5px;">📈 EXP & Drop</p>
+                                <p>เพิ่ม EXP +20%</p>
+                                <p>เพิ่ม Drop +20%</p>
+                            </div>
+                            <div>
+                                <p style="font-weight: 600; margin-bottom: 5px;">❤️ HP & SP</p>
+                                <p>เพิ่ม HP & SP +30%</p>
+                                <p>เพิ่ม HP & SP (Collection) +8%</p>
+                            </div>
+                            <div>
+                                <p style="font-weight: 600; margin-bottom: 5px;">⚔️ ATK & MATK</p>
+                                <p>เพิ่ม ATK & MATK +8</p>
+                                <p>เพิ่ม ATK & MATK +2%</p>
+                            </div>
+                            <div>
+                                <p style="font-weight: 600; margin-bottom: 5px;">🎒 น้ำหนัก</p>
+                                <p>เพิ่มน้ำหนักสูงสุด +2,500</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skills & Classes Section -->
+            <div class="update-section" id="skills">
+                <div class="content-header">
+                    <h2>🌟 Skills & Classes</h2>
+                    <div class="date">สกิลและอาชีพ</div>
+                </div>
+
+                <div class="update-card">
+                    <h3>💫 Skill Updates <span class="badge update">UPDATE</span></h3>
+                    <ul>
+                        <li>ปรับปรุงสกิล...</li>
+                        <li>เพิ่มสกิลใหม่...</li>
+                        <li>แก้ไขบัคสกิล...</li>
+                    </ul>
+                </div>
+
+                <div class="empty-state">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    <h3>เพิ่มรายละเอียดได้ที่นี่</h3>
+                    <p>สามารถเพิ่มข้อมูล Skills & Classes เพิ่มเติมในภายหลัง</p>
+                </div>
+            </div>
+
+            <!-- PvP/GvG System Section -->
+            <div class="update-section" id="pvp">
+                <div class="content-header">
+                    <h2>⚔️ PvP/GvG System</h2>
+                    <div class="date">ระบบ PvP และ GvG</div>
+                </div>
+
+                <div class="update-card">
+                    <h3>🏆 Arena Updates <span class="badge update">UPDATE</span></h3>
+                    <ul>
+                        <li>ปรับปรุงระบบ Arena...</li>
+                        <li>เพิ่มรางวัล PvP...</li>
+                        <li>ปรับระบบ WoE...</li>
+                    </ul>
+                </div>
+
+                <div class="empty-state">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    <h3>เพิ่มรายละเอียดได้ที่นี่</h3>
+                    <p>สามารถเพิ่มข้อมูล PvP/GvG System เพิ่มเติมในภายหลัง</p>
+                </div>
+            </div>
+
+            <!-- Events Section -->
+            <div class="update-section" id="events">
+                <div class="content-header">
+                    <h2>🎉 Events</h2>
+                    <div class="date">อีเว้นท์</div>
+                </div>
+
+                <div class="update-card">
+                    <h3>🎊 Event Calendar <span class="badge new">NEW</span></h3>
+                    <ul>
+                        <li>อีเว้นท์ประจำวัน...</li>
+                        <li>อีเว้นท์พิเศษ...</li>
+                        <li>กิจกรรมรายเดือน...</li>
+                    </ul>
+                </div>
+
+                <div class="empty-state">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    <h3>เพิ่มรายละเอียดได้ที่นี่</h3>
+                    <p>สามารถเพิ่มข้อมูล Events เพิ่มเติมในภายหลัง</p>
+                </div>
+            </div>
+
+            <!-- Quests & NPCs Section -->
+            <div class="update-section" id="quests">
+                <div class="content-header">
+                    <h2>📜 Quests & NPCs</h2>
+                    <div class="date">เควสและ NPC</div>
+                </div>
+
+                <div class="update-card">
+                    <h3>🗺️ Quest Updates <span class="badge new">NEW</span></h3>
+                    <ul>
+                        <li>เพิ่มเควสใหม่...</li>
+                        <li>ปรับปรุง NPC...</li>
+                        <li>เพิ่มรางวัลเควส...</li>
+                    </ul>
+                </div>
+
+                <div class="empty-state">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    <h3>เพิ่มรายละเอียดได้ที่นี่</h3>
+                    <p>สามารถเพิ่มข้อมูล Quests & NPCs เพิ่มเติมในภายหลัง</p>
+                </div>
+            </div>
+
+            <!-- Bug Fixes Section -->
+            <div class="update-section" id="bugfix">
+                <div class="content-header">
+                    <h2>🔧 Bug Fixes</h2>
+                    <div class="date">การแก้ไขบัค</div>
+                </div>
+
+                <div class="update-card">
+                    <h3>🐛 Fixed Issues <span class="badge fix">FIX</span></h3>
+                    <ul>
+                        <li>แก้ไขบัค...</li>
+                        <li>แก้ไขปัญหา...</li>
+                        <li>ปรับปรุงเสถียรภาพ...</li>
+                    </ul>
+                </div>
+
+                <div class="empty-state">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    <h3>เพิ่มรายละเอียดได้ที่นี่</h3>
+                    <p>สามารถเพิ่มข้อมูล Bug Fixes เพิ่มเติมในภายหลัง</p>
+                </div>
+            </div>
+
+            <!-- Database Changes Section -->
+            <div class="update-section" id="database">
+                <div class="content-header">
+                    <h2>💾 Database Changes</h2>
+                    <div class="date">การเปลี่ยนแปลงฐานข้อมูล</div>
+                </div>
+
+                <div class="update-card">
+                    <h3>📊 Database Updates <span class="badge update">UPDATE</span></h3>
+                    <ul>
+                        <li>อัพเดทโครงสร้างฐานข้อมูล...</li>
+                        <li>เพิ่มตารางใหม่...</li>
+                        <li>ปรับปรุงประสิทธิภาพ...</li>
+                    </ul>
+                </div>
+
+                <div class="empty-state">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    <h3>เพิ่มรายละเอียดได้ที่นี่</h3>
+                    <p>สามารถเพิ่มข้อมูล Database Changes เพิ่มเติมในภายหลัง</p>
+                </div>
+            </div>
+
+            <!-- Server Config Section -->
+            <div class="update-section" id="config">
+                <div class="content-header">
+                    <h2>⚙️ Server Config</h2>
+                    <div class="date">การตั้งค่าเซิร์ฟเวอร์</div>
+                </div>
+
+                <div class="update-card">
+                    <h3>🔨 Configuration Changes <span class="badge update">UPDATE</span></h3>
+                    <ul>
+                        <li>ปรับค่าคอนฟิก...</li>
+                        <li>เปลี่ยนแปลงการตั้งค่า...</li>
+                        <li>อัพเดทพารามิเตอร์...</li>
+                    </ul>
+                </div>
+
+                <div class="empty-state">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    <h3>เพิ่มรายละเอียดได้ที่นี่</h3>
+                    <p>สามารถเพิ่มข้อมูล Server Config เพิ่มเติมในภายหลัง</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Menu Navigation
+        const menuItems = document.querySelectorAll('.menu-item');
+        const sections = document.querySelectorAll('.update-section');
+
+        menuItems.forEach(item => {
+            item.addEventListener('click', function() {
+                // Remove active class from all menu items
+                menuItems.forEach(mi => mi.classList.remove('active'));
+                
+                // Add active class to clicked item
+                this.classList.add('active');
+
+                // Hide all sections
+                sections.forEach(section => section.classList.remove('active'));
+
+                // Show selected section
+                const sectionId = this.getAttribute('data-section');
+                document.getElementById(sectionId).classList.add('active');
+
+                // Smooth scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        // Optional: Auto-update date
+        function updateDate() {
+            const dateElements = document.querySelectorAll('.date');
+            const today = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const thaiDate = today.toLocaleDateString('th-TH', options);
+            
+            // Update only the first date element (Latest Updates)
+            if (dateElements.length > 0) {
+                dateElements[0].textContent = `อัพเดทล่าสุด: ${thaiDate}`;
+            }
+        }
+
+        // Update date on load
+        updateDate();
+    </script>
+</body>
+</html>
