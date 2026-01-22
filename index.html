@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NRO New World - Update Log</title>
+    <title>NRO New World - รายละเอียดเซิร์ฟเวอร์</title>
     <style>
         * {
             margin: 0;
@@ -13,9 +13,25 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-image: url('images/background.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
             min-height: 100vh;
             padding: 20px;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(118, 75, 162, 0.3) 100%);
+            z-index: -1;
         }
 
         .container {
@@ -29,14 +45,15 @@
 
         /* Sidebar */
         .sidebar {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(15px);
             border-radius: 15px;
             padding: 25px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
             height: fit-content;
             position: sticky;
             top: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .sidebar h1 {
@@ -100,11 +117,12 @@
 
         /* Content Area */
         .content {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(15px);
             border-radius: 15px;
             padding: 40px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .content-header {
@@ -499,7 +517,7 @@
                             </ul>
                         </div>
                         <div>
-                            <img src="images/option-master.png" alt="Option Master NPC" style="width: 100%; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); border: 3px solid #667eea;">
+                            <img src="images/option-master.png.png" alt="Option Master NPC" style="width: 100%; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); border: 3px solid #667eea;">
                         </div>
                     </div>
                 </div>
@@ -551,7 +569,7 @@
                     
                     <!-- Hero Image -->
                     <div style="margin: 20px 0; text-align: center;">
-                        <img src="images/costume-ingame.png" alt="Gold Majestic Costume Set In-Game" style="max-width: 100%; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); border: 3px solid #667eea;">
+                        <img src="images/costume-ingame.png.png" alt="Gold Majestic Costume Set In-Game" style="max-width: 100%; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); border: 3px solid #667eea;">
                     </div>
 
                     <p style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 15px; border-radius: 8px; margin: 20px 0; font-weight: 600; text-align: center;">
@@ -563,7 +581,7 @@
                         <!-- Costume 1: Gold Majestic Goat -->
                         <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); border: 2px solid #667eea;">
                             <div style="text-align: center; margin-bottom: 15px;">
-                                <img src="images/costume-gold-goat.png" alt="Costume Gold Majestic Goat" style="max-width: 100%; border-radius: 8px;">
+                                <img src="images/costume-gold-goat.png.png" alt="Costume Gold Majestic Goat" style="max-width: 100%; border-radius: 8px;">
                             </div>
                             <h4 style="color: #667eea; margin-bottom: 10px; font-size: 16px;">🎭 Costume Gold Majestic Goat</h4>
                             <p style="color: #666; font-size: 14px; margin-bottom: 8px;"><strong>ตำแหน่ง:</strong> ส่วนหัว</p>
@@ -591,7 +609,7 @@
                         <!-- Costume 2: Spotlight -->
                         <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); border: 2px solid #667eea;">
                             <div style="text-align: center; margin-bottom: 15px;">
-                                <img src="images/costume-spotlight.png" alt="Costume Spotlight" style="max-width: 100%; border-radius: 8px;">
+                                <img src="images/costume-spotlight.png.png" alt="Costume Spotlight" style="max-width: 100%; border-radius: 8px;">
                             </div>
                             <h4 style="color: #667eea; margin-bottom: 10px; font-size: 16px;">👁️ Costume Spotlight</h4>
                             <p style="color: #666; font-size: 14px; margin-bottom: 8px;"><strong>ตำแหน่ง:</strong> ส่วนตา</p>
@@ -619,7 +637,7 @@
                         <!-- Costume 3: Fire Muffler -->
                         <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); border: 2px solid #667eea;">
                             <div style="text-align: center; margin-bottom: 15px;">
-                                <img src="images/costume-fire-muffler.png" alt="Costume Fire Muffler" style="max-width: 100%; border-radius: 8px;">
+                                <img src="images/costume-fire-muffler.png.png" alt="Costume Fire Muffler" style="max-width: 100%; border-radius: 8px;">
                             </div>
                             <h4 style="color: #667eea; margin-bottom: 10px; font-size: 16px;">🔥 Costume Fire Muffler</h4>
                             <p style="color: #666; font-size: 14px; margin-bottom: 8px;"><strong>ตำแหน่ง:</strong> ส่วนปาก</p>
@@ -647,7 +665,7 @@
                         <!-- Costume 4: Sky Golden Angel Wings -->
                         <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); border: 2px solid #667eea;">
                             <div style="text-align: center; margin-bottom: 15px;">
-                                <img src="images/costume-sky-wings.png" alt="Costume Sky Golden Angel Wings" style="max-width: 100%; border-radius: 8px;">
+                                <img src="images/costume-sky-wings.png.png" alt="Costume Sky Golden Angel Wings" style="max-width: 100%; border-radius: 8px;">
                             </div>
                             <h4 style="color: #667eea; margin-bottom: 10px; font-size: 16px;">👼 Costume Sky Golden Angel Wings</h4>
                             <p style="color: #666; font-size: 14px; margin-bottom: 8px;"><strong>ตำแหน่ง:</strong> ผ้าคลุม</p>
@@ -684,14 +702,13 @@
                             </div>
                             <div>
                                 <p style="font-weight: 600; margin-bottom: 5px;">❤️ HP & SP</p>
-                                <p>เพิ่ม HP & SP +25%</p>
-                                <p>เพิ่ม HP & SP (Collection) +6%</p>
-                                <p>เพิ่ม Allstat (Collection) +1</p>
+                                <p>เพิ่ม HP & SP +30%</p>
+                                <p>เพิ่ม HP & SP (Collection) +8%</p>
                             </div>
                             <div>
                                 <p style="font-weight: 600; margin-bottom: 5px;">⚔️ ATK & MATK</p>
-                                <p>เพิ่ม ATK & MATK (Collection) +6</p>
-                                <p>เพิ่ม ATK & MATK (Collection) +2%</p>
+                                <p>เพิ่ม ATK & MATK +8</p>
+                                <p>เพิ่ม ATK & MATK +2%</p>
                             </div>
                             <div>
                                 <p style="font-weight: 600; margin-bottom: 5px;">🎒 น้ำหนัก</p>
