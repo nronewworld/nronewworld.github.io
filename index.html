@@ -284,6 +284,31 @@
             .content {
                 padding: 25px;
             }
+            
+            .month-grid {
+                grid-template-columns: 1fr !important;
+                gap: 15px;
+            }
+            
+            .month-card-compact {
+                padding: 20px;
+                min-height: auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .month-card-compact h4 {
+                font-size: 16px;
+            }
+            
+            .month-card-compact .month-theme {
+                font-size: 12px;
+            }
+            
+            .month-card-compact li {
+                font-size: 12px;
+                padding-left: 18px;
+            }
         }
 
         /* Empty State */
@@ -344,6 +369,9 @@
             border-left: 4px solid #667eea;
             transition: all 0.3s ease;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
         }
 
         .month-card-compact:hover {
@@ -353,25 +381,30 @@
 
         .month-card-compact h4 {
             color: #667eea;
-            font-size: 20px;
+            font-size: 18px;
             margin-bottom: 10px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
+            line-height: 1.4;
         }
 
         .month-card-compact .month-theme {
-            font-size: 14px;
+            font-size: 13px;
             color: #999;
             font-style: italic;
             margin-bottom: 15px;
-            padding-bottom: 15px;
+            padding-bottom: 12px;
             border-bottom: 1px solid #e0e0e0;
+            line-height: 1.5;
+            word-wrap: break-word;
         }
 
         .month-card-compact ul {
             list-style: none;
             padding: 0;
+            margin: 0;
+            flex-grow: 1;
         }
 
         .month-card-compact li {
@@ -379,8 +412,9 @@
             padding-left: 20px;
             position: relative;
             color: #555;
-            font-size: 14px;
-            line-height: 1.5;
+            font-size: 13px;
+            line-height: 1.6;
+            word-wrap: break-word;
         }
 
         .month-card-compact li::before {
@@ -426,6 +460,29 @@
 
         button:active {
             transform: translateY(0);
+        }
+
+        /* Bot Guide Text Styling */
+        .system-guide-content ul {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .system-guide-content li {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            line-height: 1.6;
+        }
+
+        .system-guide-content strong {
+            display: inline-block;
+            margin-right: 4px;
+        }
+
+        .system-guide-content h4 {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            line-height: 1.4;
         }
     </style>
 </head>
@@ -744,127 +801,127 @@
                         
                         <!-- Attack Settings -->
                         <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
-                            <h4 style="color: #667eea; margin-bottom: 12px;">⚔️ การตั้งค่าการโจมตี</h4>
-                            <ul style="list-style: none; padding-left: 0;">
-                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0;">
-                                    <strong>โจมตีปกติ:</strong> เปิด/ปิดการโจมตีด้วยอาวุธธรรมดา
+                            <h4 style="color: #667eea; margin-bottom: 12px; word-wrap: break-word;">⚔️ การตั้งค่าการโจมตี</h4>
+                            <ul style="list-style: none; padding-left: 0; margin: 0;">
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0; word-wrap: break-word; line-height: 1.6;">
+                                    <strong style="color: #333;">โจมตีปกติ:</strong> <span style="color: #555;">เปิด/ปิดการโจมตีด้วยอาวุธธรรมดา</span>
                                 </li>
-                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0;">
-                                    <strong>สกิลโจมตี:</strong> เพิ่มสกิลที่ต้องการใช้โจมตี ระบุ ID สกิล + เลเวล
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0; word-wrap: break-word; line-height: 1.6;">
+                                    <strong style="color: #333;">สกิลโจมตี:</strong> <span style="color: #555;">เพิ่มสกิลที่ต้องการใช้โจมตี ระบุ ID สกิล + เลเวล</span>
                                 </li>
-                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0;">
-                                    <strong>% ใช้สกิล:</strong> ตั้งค่าโอกาสในการใช้สกิล (0-100%)
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0; word-wrap: break-word; line-height: 1.6;">
+                                    <strong style="color: #333;">% ใช้สกิล:</strong> <span style="color: #555;">ตั้งค่าโอกาสในการใช้สกิล (0-100%)</span>
                                 </li>
-                                <li style="padding: 8px 0;">
-                                    <strong>โหมดการเคลื่อนที่:</strong> เหมาะสำหรับ Hunter (ยืนนิ่งยิง)
+                                <li style="padding: 8px 0; word-wrap: break-word; line-height: 1.6;">
+                                    <strong style="color: #333;">โหมดการเคลื่อนที่:</strong> <span style="color: #555;">เหมาะสำหรับ Hunter (ยืนนิ่งยิง)</span>
                                 </li>
                             </ul>
                         </div>
 
                         <!-- Heal Settings -->
                         <div style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
-                            <h4 style="color: #667eea; margin-bottom: 12px;">💊 การตั้งค่าการฟื้นฟู</h4>
-                            <ul style="list-style: none; padding-left: 0;">
-                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0;">
-                                    <strong>สกิล Heal:</strong> เพิ่มสกิลรักษา (เช่น Heal, Potion Pitcher) พร้อมระบุ % HP ที่จะใช้
+                            <h4 style="color: #667eea; margin-bottom: 12px; word-wrap: break-word;">💊 การตั้งค่าการฟื้นฟู</h4>
+                            <ul style="list-style: none; padding-left: 0; margin: 0;">
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0; word-wrap: break-word; line-height: 1.6;">
+                                    <strong style="color: #333;">สกิล Heal:</strong> <span style="color: #555;">เพิ่มสกิลรักษา (เช่น Heal, Potion Pitcher) พร้อมระบุ % HP ที่จะใช้</span>
                                 </li>
-                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0;">
-                                    <strong>ยาปั้ม:</strong> ระบุไอเทม ID ของยาและ % HP/SP ที่จะใช้
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0; word-wrap: break-word; line-height: 1.6;">
+                                    <strong style="color: #333;">ยาปั้ม:</strong> <span style="color: #555;">ระบุไอเทม ID ของยาและ % HP/SP ที่จะใช้</span>
                                 </li>
-                                <li style="padding: 8px 0;">
-                                    <strong>นั่งเด้ง:</strong> ตั้งค่า % HP/SP ที่จะนั่งและยืน (เหมาะสำหรับฟื้นฟู)
+                                <li style="padding: 8px 0; word-wrap: break-word; line-height: 1.6;">
+                                    <strong style="color: #333;">นั่งเด้ง:</strong> <span style="color: #555;">ตั้งค่า % HP/SP ที่จะนั่งและยืน (เหมาะสำหรับฟื้นฟู)</span>
                                 </li>
                             </ul>
                         </div>
 
                         <!-- Target Settings -->
                         <div style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
-                            <h4 style="color: #667eea; margin-bottom: 12px;">🎯 การกำหนดเป้าหมาย</h4>
-                            <ul style="list-style: none; padding-left: 0;">
-                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0;">
-                                    <strong>เพิ่มมอนสเตอร์:</strong> ระบุ Monster ID ที่ต้องการโจมตี (สูงสุด 20 ตัว)
+                            <h4 style="color: #667eea; margin-bottom: 12px; word-wrap: break-word;">🎯 การกำหนดเป้าหมาย</h4>
+                            <ul style="list-style: none; padding-left: 0; margin: 0;">
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0; word-wrap: break-word; line-height: 1.6;">
+                                    <strong style="color: #333;">เพิ่มมอนสเตอร์:</strong> <span style="color: #555;">ระบุ Monster ID ที่ต้องการโจมตี (สูงสุด 20 ตัว)</span>
                                 </li>
-                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0;">
-                                    <strong>ลบมอนสเตอร์:</strong> ลบ Monster ID ออกจากรายการ
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0; word-wrap: break-word; line-height: 1.6;">
+                                    <strong style="color: #333;">ลบมอนสเตอร์:</strong> <span style="color: #555;">ลบ Monster ID ออกจากรายการ</span>
                                 </li>
-                                <li style="padding: 8px 0;">
-                                    <strong>Aggressive Mode:</strong> เปิด/ปิดการโจมตีมอนที่โจมตีผู้เล่น
+                                <li style="padding: 8px 0; word-wrap: break-word; line-height: 1.6;">
+                                    <strong style="color: #333;">Aggressive Mode:</strong> <span style="color: #555;">เปิด/ปิดการโจมตีมอนที่โจมตีผู้เล่น</span>
                                 </li>
                             </ul>
                         </div>
 
                         <!-- Teleport Settings -->
                         <div style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
-                            <h4 style="color: #667eea; margin-bottom: 12px;">🔄 การตั้งค่าวาร์ป/วิง</h4>
-                            <ul style="list-style: none; padding-left: 0;">
-                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0;">
-                                    <strong>เทเลพอร์ทสกิล:</strong> เปิด/ปิดการใช้สกิล Teleport
+                            <h4 style="color: #667eea; margin-bottom: 12px; word-wrap: break-word;">🔄 การตั้งค่าวาร์ป/วิง</h4>
+                            <ul style="list-style: none; padding-left: 0; margin: 0;">
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0; word-wrap: break-word; line-height: 1.6;">
+                                    <strong style="color: #333;">เทเลพอร์ทสกิล:</strong> <span style="color: #555;">เปิด/ปิดการใช้สกิล Teleport</span>
                                 </li>
-                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0;">
-                                    <strong>Fly Wing:</strong> เปิด/ปิดการใช้ Fly Wing
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0; word-wrap: break-word; line-height: 1.6;">
+                                    <strong style="color: #333;">Fly Wing:</strong> <span style="color: #555;">เปิด/ปิดการใช้ Fly Wing</span>
                                 </li>
-                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0;">
-                                    <strong>HP ขั้นต่ำ:</strong> ตั้งค่า % HP ที่จะวิงหนี (5-90%)
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0; word-wrap: break-word; line-height: 1.6;">
+                                    <strong style="color: #333;">HP ขั้นต่ำ:</strong> <span style="color: #555;">ตั้งค่า % HP ที่จะวิงหนี (5-90%)</span>
                                 </li>
-                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0;">
-                                    <strong>ดีเลย์:</strong> เวลารอหามอนก่อนวาร์ป (2-600 วินาที)
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0; word-wrap: break-word; line-height: 1.6;">
+                                    <strong style="color: #333;">ดีเลย์:</strong> <span style="color: #555;">เวลารอหามอนก่อนวาร์ป (2-600 วินาที)</span>
                                 </li>
-                                <li style="padding: 8px 0;">
-                                    <strong>จำนวนมอน:</strong> จำนวนมอนที่โจมตีผู้เล่นเพื่อวิงหนี
+                                <li style="padding: 8px 0; word-wrap: break-word; line-height: 1.6;">
+                                    <strong style="color: #333;">จำนวนมอน:</strong> <span style="color: #555;">จำนวนมอนที่โจมตีผู้เล่นเพื่อวิงหนี</span>
                                 </li>
                             </ul>
                         </div>
 
                         <!-- Support Mode -->
                         <div style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
-                            <h4 style="color: #667eea; margin-bottom: 12px;">👥 โหมดติดตาม/ซัพพอร์ท</h4>
-                            <ul style="list-style: none; padding-left: 0;">
-                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0;">
-                                    <strong>เลือกผู้เล่น:</strong> เลือกสมาชิกในปาร์ตี้ที่จะติดตาม
+                            <h4 style="color: #667eea; margin-bottom: 12px; word-wrap: break-word;">👥 โหมดติดตาม/ซัพพอร์ท</h4>
+                            <ul style="list-style: none; padding-left: 0; margin: 0;">
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0; word-wrap: break-word; line-height: 1.6;">
+                                    <strong style="color: #333;">เลือกผู้เล่น:</strong> <span style="color: #555;">เลือกสมาชิกในปาร์ตี้ที่จะติดตาม</span>
                                 </li>
-                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0;">
-                                    <strong>Heal Party:</strong> ตั้งค่า Heal สมาชิกปาร์ตี้เมื่อ HP ต่ำ
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0; word-wrap: break-word; line-height: 1.6;">
+                                    <strong style="color: #333;">Heal Party:</strong> <span style="color: #555;">ตั้งค่า Heal สมาชิกปาร์ตี้เมื่อ HP ต่ำ</span>
                                 </li>
-                                <li style="padding: 8px 0;">
-                                    <strong>บัฟ Party:</strong> บัฟสมาชิกอัตโนมัติ
+                                <li style="padding: 8px 0; word-wrap: break-word; line-height: 1.6;">
+                                    <strong style="color: #333;">บัฟ Party:</strong> <span style="color: #555;">บัฟสมาชิกอัตโนมัติ</span>
                                 </li>
                             </ul>
                         </div>
 
                         <!-- Item Pickup -->
                         <div style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
-                            <h4 style="color: #667eea; margin-bottom: 12px;">💎 การเก็บไอเทม</h4>
-                            <ul style="list-style: none; padding-left: 0;">
-                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0;">
-                                    <strong>เก็บทุกไอเทม:</strong> เก็บไอเทมทั้งหมดที่ดรอป
+                            <h4 style="color: #667eea; margin-bottom: 12px; word-wrap: break-word;">💎 การเก็บไอเทม</h4>
+                            <ul style="list-style: none; padding-left: 0; margin: 0;">
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0; word-wrap: break-word; line-height: 1.6;">
+                                    <strong style="color: #333;">เก็บทุกไอเทม:</strong> <span style="color: #555;">เก็บไอเทมทั้งหมดที่ดรอป</span>
                                 </li>
-                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0;">
-                                    <strong>เก็บตามรายการ:</strong> เก็บเฉพาะไอเทมที่ระบุ (สูงสุด 20 ไอเทม)
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0; word-wrap: break-word; line-height: 1.6;">
+                                    <strong style="color: #333;">เก็บตามรายการ:</strong> <span style="color: #555;">เก็บเฉพาะไอเทมที่ระบุ (สูงสุด 20 ไอเทม)</span>
                                 </li>
-                                <li style="padding: 8px 0;">
-                                    <strong>ไม่เก็บ:</strong> ปิดการเก็บไอเทม
+                                <li style="padding: 8px 0; word-wrap: break-word; line-height: 1.6;">
+                                    <strong style="color: #333;">ไม่เก็บ:</strong> <span style="color: #555;">ปิดการเก็บไอเทม</span>
                                 </li>
                             </ul>
                         </div>
 
                         <!-- Special Features -->
                         <div style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
-                            <h4 style="color: #667eea; margin-bottom: 12px;">🌟 ฟีเจอร์พิเศษ</h4>
-                            <ul style="list-style: none; padding-left: 0;">
-                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0;">
-                                    <strong>Monk Combo:</strong> เปิด Chain Combo สำหรับ Monk
+                            <h4 style="color: #667eea; margin-bottom: 12px; word-wrap: break-word;">🌟 ฟีเจอร์พิเศษ</h4>
+                            <ul style="list-style: none; padding-left: 0; margin: 0;">
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0; word-wrap: break-word; line-height: 1.6;">
+                                    <strong style="color: #333;">Monk Combo:</strong> <span style="color: #555;">เปิด Chain Combo สำหรับ Monk</span>
                                 </li>
-                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0;">
-                                    <strong>Heal ผีดิบ:</strong> โหมดล่าผีดิบด้วย Heal
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0; word-wrap: break-word; line-height: 1.6;">
+                                    <strong style="color: #333;">Heal ผีดิบ:</strong> <span style="color: #555;">โหมดล่าผีดิบด้วย Heal</span>
                                 </li>
-                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0;">
-                                    <strong>คืนชีพ Auto:</strong> ใช้ Token of Siegfried คืนชีพอัตโนมัติ
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0; word-wrap: break-word; line-height: 1.6;">
+                                    <strong style="color: #333;">คืนชีพ Auto:</strong> <span style="color: #555;">ใช้ Token of Siegfried คืนชีพอัตโนมัติ</span>
                                 </li>
-                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0;">
-                                    <strong>รับ Party Auto:</strong> รับสมาชิกปาร์ตี้อัตโนมัติ
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0; word-wrap: break-word; line-height: 1.6;">
+                                    <strong style="color: #333;">รับ Party Auto:</strong> <span style="color: #555;">รับสมาชิกปาร์ตี้อัตโนมัติ</span>
                                 </li>
-                                <li style="padding: 8px 0;">
-                                    <strong>โฟกัส:</strong> เลือกระหว่างเน้นตีมอนหรือเก็บของ
+                                <li style="padding: 8px 0; word-wrap: break-word; line-height: 1.6;">
+                                    <strong style="color: #333;">โฟกัส:</strong> <span style="color: #555;">เลือกระหว่างเน้นตีมอนหรือเก็บของ</span>
                                 </li>
                             </ul>
                         </div>
@@ -879,7 +936,6 @@
                                 <li>ตั้งค่าการฟื้นฟูให้เหมาะสมกับอาชีพของคุณ</li>
                                 <li>ใช้โหมดเน้นเก็บของสำหรับการฟาร์มไอเทม</li>
                                 <li>ตั้งค่าวิงหนีเมื่อ HP ต่ำเพื่อความปลอดภัย</li>
-                                <li>ใช้คำสั่ง <code style="background: #667eea; color: white; padding: 2px 6px; border-radius: 3px;">@resetbot</code> เพื่อรีเซ็ตการตั้งค่า</li>
                             </ul>
                             <p style="color: #d32f2f; margin-top: 15px; margin-bottom: 10px;"><strong>⚠️ ข้อควรระวัง:</strong></p>
                             <ul style="color: #d32f2f; line-height: 1.8;">
@@ -895,8 +951,7 @@
                     <div class="update-card" style="border-left-color: #f5576c;">
                         <h3>🔄 รีเซ็ตการตั้งค่า</h3>
                         <p style="color: #555; line-height: 1.6;">
-                            หากต้องการล้างการตั้งค่าทั้งหมด สามารถเลือก "Reset การตั้งค่า AI" ในเมนูหลัก 
-                            หรือใช้คำสั่ง <code style="background: #f5576c; color: white; padding: 4px 12px; border-radius: 4px; font-size: 14px;">@resetbot</code>
+                            หากต้องการล้างการตั้งค่าทั้งหมด สามารถเลือก "Reset การตั้งค่า AI" ในเมนูหลัก                            
                         </p>
                     </div>
                 </div>
