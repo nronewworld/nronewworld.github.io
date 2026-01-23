@@ -404,6 +404,29 @@
             margin: 0;
             font-size: 14px;
         }
+
+        /* Code and System Guide Styles */
+        code {
+            background: #667eea;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+        }
+
+        .system-guide-content {
+            animation: fadeIn 0.5s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3) !important;
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
@@ -605,30 +628,288 @@
                     <div class="date">การอัพเดทระบบ</div>
                 </div>
 
-                <div class="update-card">
-                    <h3>🎯 [Option Master] <span class="badge new">NEW</span></h3>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start; margin-top: 20px;">
-                        <div>
-                            <ul>
-                                <li>สามารถเพิ่ม Option อุปกรณ์ได้</li>
-                                <li>ใช้เงิน 20000 zeny และ Option Stone 5 ชิ้น 🪙</li>
-                                <li>โอกาสสำเร็จอยู่ที่ 50%</li>
-                                <li>จำนวนออพชั่นเพิ่มได้เพียง 1 เท่านั้น(ในช่วงแรก)</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <img src="images/option-master.png" alt="Option Master NPC" style="width: 100%; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); border: 3px solid #667eea;">
-                        </div>
+                <!-- Navigation Menu for Systems -->
+                <div class="update-card" style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%); border-left-color: #764ba2;">
+                    <h3>📋 เลือกระบบที่ต้องการดูคู่มือ</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;">
+                        <button onclick="showSystemGuide('option-master')" style="padding: 12px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; transition: all 0.3s;">
+                            🎯 Option Master
+                        </button>
+                        <button onclick="showSystemGuide('auto-attack')" style="padding: 12px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; transition: all 0.3s;">
+                            🤖 Auto Attack Bot
+                        </button>
+                        <button onclick="showSystemGuide('future-system')" style="padding: 12px 20px; background: linear-gradient(135deg, #999 0%, #666 100%); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 15px; opacity: 0.6;">
+                            🔮 ระบบอื่นๆ (เร็วๆนี้)
+                        </button>
                     </div>
                 </div>
 
-                <div class="update-card">
-                    <h3>🔄 System Improvements <span class="badge update">UPDATE</span></h3>
-                    <ul>
-                        <li>เพิ่มระบบ Option Master สำหรับเพิ่มออพชั่นอุปกรณ์</li>
-                        <li>ปรับปรุงระบบการสุ่มออพชั่นให้มีความเสถียร</li>
-                        <li>เพิ่มประสิทธิภาพการทำงานของ NPC</li>
-                    </ul>
+                <!-- Option Master System -->
+                <div id="system-option-master" class="system-guide-content">
+                    <div class="update-card">
+                        <h3>🎯 [Option Master] <span class="badge new">NEW</span></h3>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start; margin-top: 20px;">
+                            <div>
+                                <ul>
+                                    <li>สามารถเพิ่ม Option อุปกรณ์ได้</li>
+                                    <li>ใช้เงิน 20000 zeny และ Option Stone 5 ชิ้น 🪙</li>
+                                    <li>โอกาสสำเร็จอยู่ที่ 50%</li>
+                                    <li>จำนวนออพชั่นเพิ่มได้เพียง 1 เท่านั้น(ในช่วงแรก)</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <img src="images/option-master.png" alt="Option Master NPC" style="width: 100%; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); border: 3px solid #667eea;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="update-card">
+                        <h3>🔄 System Improvements <span class="badge update">UPDATE</span></h3>
+                        <ul>
+                            <li>เพิ่มระบบ Option Master สำหรับเพิ่มออพชั่นอุปกรณ์</li>
+                            <li>ปรับปรุงระบบการสุ่มออพชั่นให้มีความเสถียร</li>
+                            <li>เพิ่มประสิทธิภาพการทำงานของ NPC</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Auto Attack Bot System -->
+                <div id="system-auto-attack" class="system-guide-content" style="display: none;">
+                    <div class="update-card">
+                        <h3>🤖 Auto Attack Bot System <span class="badge new">VIP</span></h3>
+                        <p style="color: #555; line-height: 1.6; margin-bottom: 15px;">
+                            ระบบช่วยเล่นอัตโนมัติสำหรับสมาชิก VIP ที่สามารถตั้งค่าการโจมตี ฟื้นฟู และซัพพอร์ทได้อย่างละเอียด
+                        </p>
+                        
+                        <!-- Screenshots -->
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
+                            <div style="text-align: center;">
+                                <img src="images/menuai.png" alt="AI Bot Menu" style="width: 100%; max-width: 300px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); border: 3px solid #667eea;">
+                                <p style="color: #667eea; font-weight: 600; margin-top: 10px;">เมนูหลักของระบบ AI</p>
+                            </div>
+                            <div style="text-align: center;">
+                                <img src="images/botmenu1.png" alt="Bot Status Display" style="width: 100%; max-width: 500px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); border: 3px solid #667eea;">
+                                <p style="color: #667eea; font-weight: 600; margin-top: 10px;">หน้าแสดงสถานะการทำงาน</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Main Features -->
+                    <div class="update-card">
+                        <h3>⚙️ ฟีเจอร์หลัก</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-top: 15px;">
+                            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 3px solid #667eea;">
+                                <h4 style="color: #667eea; margin-bottom: 8px; font-size: 16px;">⚔️ โจมตีอัตโนมัติ</h4>
+                                <p style="font-size: 14px; color: #555; margin: 0;">เปิด/ปิดการโจมตีปกติ และใช้สกิลโจมตีอัตโนมัติ</p>
+                            </div>
+                            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 3px solid #667eea;">
+                                <h4 style="color: #667eea; margin-bottom: 8px; font-size: 16px;">💊 ระบบฟื้นฟู</h4>
+                                <p style="font-size: 14px; color: #555; margin: 0;">ใช้สกิล Heal และยาปั้ม HP/SP อัตโนมัติ</p>
+                            </div>
+                            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 3px solid #667eea;">
+                                <h4 style="color: #667eea; margin-bottom: 8px; font-size: 16px;">✨ บัฟอัตโนมัติ</h4>
+                                <p style="font-size: 14px; color: #555; margin: 0;">ใช้สกิลบัฟและไอเทมบัฟอัตโนมัติ</p>
+                            </div>
+                            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 3px solid #667eea;">
+                                <h4 style="color: #667eea; margin-bottom: 8px; font-size: 16px;">🎯 เลือกเป้าหมาย</h4>
+                                <p style="font-size: 14px; color: #555; margin: 0;">กำหนดมอนสเตอร์ที่จะโจมตีได้</p>
+                            </div>
+                            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 3px solid #667eea;">
+                                <h4 style="color: #667eea; margin-bottom: 8px; font-size: 16px;">🔄 วาร์ป/วิง</h4>
+                                <p style="font-size: 14px; color: #555; margin: 0;">ตั้งค่าการหนีอัตโนมัติเมื่อ HP ต่ำ</p>
+                            </div>
+                            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 3px solid #667eea;">
+                                <h4 style="color: #667eea; margin-bottom: 8px; font-size: 16px;">👥 โหมดซัพพอร์ท</h4>
+                                <p style="font-size: 14px; color: #555; margin: 0;">ติดตามและช่วยเหลือสมาชิกในปาร์ตี้</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Start Guide -->
+                    <div class="update-card">
+                        <h3>🚀 วิธีเริ่มต้นใช้งาน</h3>
+                        <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%); padding: 20px; border-radius: 8px; margin-top: 15px;">
+                            <ol style="padding-left: 20px; color: #555; line-height: 2;">
+                                <li><strong>เปิดเมนู Bot:</strong>กดใช้งาน Auto Attack Item</li>
+                                <li><strong>ตั้งค่าพื้นฐาน:</strong> เลือก "ตั้งค่า" เพื่อปรับแต่งการทำงาน</li>
+                                <li><strong>เปิดใช้งาน:</strong> กดปุ่ม "เปิดระบบ Auto Attack"</li>
+                                <li><strong>ปิดการใช้งาน:</strong> กดปุ่ม "ปิดระบบ Auto Attack"</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <!-- Detailed Settings -->
+                    <div class="update-card">
+                        <h3>📖 คู่มือการตั้งค่าโดยละเอียด</h3>
+                        
+                        <!-- Attack Settings -->
+                        <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                            <h4 style="color: #667eea; margin-bottom: 12px;">⚔️ การตั้งค่าการโจมตี</h4>
+                            <ul style="list-style: none; padding-left: 0;">
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0;">
+                                    <strong>โจมตีปกติ:</strong> เปิด/ปิดการโจมตีด้วยอาวุธธรรมดา
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0;">
+                                    <strong>สกิลโจมตี:</strong> เพิ่มสกิลที่ต้องการใช้โจมตี ระบุ ID สกิล + เลเวล
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0;">
+                                    <strong>% ใช้สกิล:</strong> ตั้งค่าโอกาสในการใช้สกิล (0-100%)
+                                </li>
+                                <li style="padding: 8px 0;">
+                                    <strong>โหมดการเคลื่อนที่:</strong> เหมาะสำหรับ Hunter (ยืนนิ่งยิง)
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Heal Settings -->
+                        <div style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                            <h4 style="color: #667eea; margin-bottom: 12px;">💊 การตั้งค่าการฟื้นฟู</h4>
+                            <ul style="list-style: none; padding-left: 0;">
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0;">
+                                    <strong>สกิล Heal:</strong> เพิ่มสกิลรักษา (เช่น Heal, Potion Pitcher) พร้อมระบุ % HP ที่จะใช้
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0;">
+                                    <strong>ยาปั้ม:</strong> ระบุไอเทม ID ของยาและ % HP/SP ที่จะใช้
+                                </li>
+                                <li style="padding: 8px 0;">
+                                    <strong>นั่งเด้ง:</strong> ตั้งค่า % HP/SP ที่จะนั่งและยืน (เหมาะสำหรับฟื้นฟู)
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Target Settings -->
+                        <div style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                            <h4 style="color: #667eea; margin-bottom: 12px;">🎯 การกำหนดเป้าหมาย</h4>
+                            <ul style="list-style: none; padding-left: 0;">
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0;">
+                                    <strong>เพิ่มมอนสเตอร์:</strong> ระบุ Monster ID ที่ต้องการโจมตี (สูงสุด 20 ตัว)
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0;">
+                                    <strong>ลบมอนสเตอร์:</strong> ลบ Monster ID ออกจากรายการ
+                                </li>
+                                <li style="padding: 8px 0;">
+                                    <strong>Aggressive Mode:</strong> เปิด/ปิดการโจมตีมอนที่โจมตีผู้เล่น
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Teleport Settings -->
+                        <div style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                            <h4 style="color: #667eea; margin-bottom: 12px;">🔄 การตั้งค่าวาร์ป/วิง</h4>
+                            <ul style="list-style: none; padding-left: 0;">
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0;">
+                                    <strong>เทเลพอร์ทสกิล:</strong> เปิด/ปิดการใช้สกิล Teleport
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0;">
+                                    <strong>Fly Wing:</strong> เปิด/ปิดการใช้ Fly Wing
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0;">
+                                    <strong>HP ขั้นต่ำ:</strong> ตั้งค่า % HP ที่จะวิงหนี (5-90%)
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0;">
+                                    <strong>ดีเลย์:</strong> เวลารอหามอนก่อนวาร์ป (2-600 วินาที)
+                                </li>
+                                <li style="padding: 8px 0;">
+                                    <strong>จำนวนมอน:</strong> จำนวนมอนที่โจมตีผู้เล่นเพื่อวิงหนี
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Support Mode -->
+                        <div style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                            <h4 style="color: #667eea; margin-bottom: 12px;">👥 โหมดติดตาม/ซัพพอร์ท</h4>
+                            <ul style="list-style: none; padding-left: 0;">
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0;">
+                                    <strong>เลือกผู้เล่น:</strong> เลือกสมาชิกในปาร์ตี้ที่จะติดตาม
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0;">
+                                    <strong>Heal Party:</strong> ตั้งค่า Heal สมาชิกปาร์ตี้เมื่อ HP ต่ำ
+                                </li>
+                                <li style="padding: 8px 0;">
+                                    <strong>บัฟ Party:</strong> บัฟสมาชิกอัตโนมัติ
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Item Pickup -->
+                        <div style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                            <h4 style="color: #667eea; margin-bottom: 12px;">💎 การเก็บไอเทม</h4>
+                            <ul style="list-style: none; padding-left: 0;">
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0;">
+                                    <strong>เก็บทุกไอเทม:</strong> เก็บไอเทมทั้งหมดที่ดรอป
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0;">
+                                    <strong>เก็บตามรายการ:</strong> เก็บเฉพาะไอเทมที่ระบุ (สูงสุด 20 ไอเทม)
+                                </li>
+                                <li style="padding: 8px 0;">
+                                    <strong>ไม่เก็บ:</strong> ปิดการเก็บไอเทม
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Special Features -->
+                        <div style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                            <h4 style="color: #667eea; margin-bottom: 12px;">🌟 ฟีเจอร์พิเศษ</h4>
+                            <ul style="list-style: none; padding-left: 0;">
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0;">
+                                    <strong>Monk Combo:</strong> เปิด Chain Combo สำหรับ Monk
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0;">
+                                    <strong>Heal ผีดิบ:</strong> โหมดล่าผีดิบด้วย Heal
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0;">
+                                    <strong>คืนชีพ Auto:</strong> ใช้ Token of Siegfried คืนชีพอัตโนมัติ
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0;">
+                                    <strong>รับ Party Auto:</strong> รับสมาชิกปาร์ตี้อัตโนมัติ
+                                </li>
+                                <li style="padding: 8px 0;">
+                                    <strong>โฟกัส:</strong> เลือกระหว่างเน้นตีมอนหรือเก็บของ
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Tips & Warnings -->
+                    <div class="update-card" style="border-left-color: #ffc107; background: rgba(255, 193, 7, 0.05);">
+                        <h3>💡 เทคนิคและข้อควรระวัง</h3>
+                        <div style="padding: 10px 0;">
+                            <p style="color: #555; margin-bottom: 10px;"><strong>✅ คำแนะนำ:</strong></p>
+                            <ul style="color: #555; line-height: 1.8;">
+                                <li>ตั้งค่าการฟื้นฟูให้เหมาะสมกับอาชีพของคุณ</li>
+                                <li>ใช้โหมดเน้นเก็บของสำหรับการฟาร์มไอเทม</li>
+                                <li>ตั้งค่าวิงหนีเมื่อ HP ต่ำเพื่อความปลอดภัย</li>
+                                <li>ใช้คำสั่ง <code style="background: #667eea; color: white; padding: 2px 6px; border-radius: 3px;">@resetbot</code> เพื่อรีเซ็ตการตั้งค่า</li>
+                            </ul>
+                            <p style="color: #d32f2f; margin-top: 15px; margin-bottom: 10px;"><strong>⚠️ ข้อควรระวัง:</strong></p>
+                            <ul style="color: #d32f2f; line-height: 1.8;">
+                                <li>AI Bot จะลดเรท Drop 50% ตามกฎของเซิร์ฟเวอร์</li>
+                                <li>ระบบจะตรวจจับบอทและเก็บของช้ากว่าคนปกติ</li>
+                                <li>ควรตรวจสอบการตั้งค่าก่อนเปิดใช้งานทุกครั้ง</li>
+                                <li>ไม่ควรเปิดบอททิ้งไว้โดยไม่มีการดูแล</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Reset Command -->
+                    <div class="update-card" style="border-left-color: #f5576c;">
+                        <h3>🔄 รีเซ็ตการตั้งค่า</h3>
+                        <p style="color: #555; line-height: 1.6;">
+                            หากต้องการล้างการตั้งค่าทั้งหมด สามารถเลือก "Reset การตั้งค่า AI" ในเมนูหลัก 
+                            หรือใช้คำสั่ง <code style="background: #f5576c; color: white; padding: 4px 12px; border-radius: 4px; font-size: 14px;">@resetbot</code>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Future System Placeholder -->
+                <div id="system-future-system" class="system-guide-content" style="display: none;">
+                    <div class="empty-state">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                        <h3>ระบบใหม่กำลังจะมา</h3>
+                        <p>เรากำลังพัฒนาระบบใหม่ๆ เพิ่มเติม คอยติดตามได้เร็วๆ นี้!</p>
+                    </div>
                 </div>
             </div>
 
@@ -644,7 +925,7 @@
                     <ul>
                         <li><strong>HP Boss:</strong> เพิ่มเป็น x2 (เพิ่มความท้าทายในการล่าบอส)</li>
                         <li><strong>ตายเสีย:</strong> 5% (ลดความเสียหายจากการตาย)</li>
-                        <li><strong>Bot AI:</strong> ลด Rate Drop 50% (ปรับสมดุลรางวัล)</li>
+                        <li><strong>AI Boss:</strong> ลด Rate Drop 50% (ปรับสมดุลรางวัล)</li>
                     </ul>
                 </div>
 
@@ -654,7 +935,7 @@
                         <li><strong>ไอเทมจำพวกขยะ:</strong> ขายได้สูงสุด 700 Zeny</li>
                         <li><strong>ไอเทมอุปกรณ์สวมใส่:</strong> ขายได้สูงสุด 700 Zeny</li>
                         <li><strong>ไอเทมของกดใช้/ยา:</strong> ขายได้สูงสุด 700 Zeny</li>
-                        <li>ช่วยควบคุมเศรษฐกิจและป้องกัน Zeny Inflation</li>
+                        <li>ระบบนี้ช่วยควบคุมเศรษฐกิจและป้องกัน Zeny Inflation</li>
                     </ul>
                 </div>
 
@@ -669,8 +950,8 @@
                 <div class="update-card">
                     <h3>🔧 การปรับแต่งอื่นๆ <span class="badge new">NEW</span></h3>
                     <ul>
-                        <li><strong>All Class:</strong> สามารถใช้Critical Doubleได้แล้ว</li>
-                        <li>เพิ่มความหลากหลายในการเล่น</li>
+                        <li><strong>Assassin Cross:</strong> สามารถใช้ Cloaking (Cribble Shield) ได้แล้ว</li>
+                        <li>เพิ่มความหลากหลายในการเล่นอาชีพ Assassin</li>
                     </ul>
                 </div>
 
@@ -1169,6 +1450,24 @@
 
         // Update date on load
         updateDate();
+
+        // System Guide Navigation
+        function showSystemGuide(systemId) {
+            // Hide all system guides
+            const allGuides = document.querySelectorAll('.system-guide-content');
+            allGuides.forEach(guide => {
+                guide.style.display = 'none';
+            });
+
+            // Show selected guide
+            const selectedGuide = document.getElementById('system-' + systemId);
+            if (selectedGuide) {
+                selectedGuide.style.display = 'block';
+                
+                // Smooth scroll to guide
+                selectedGuide.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
     </script>
 </body>
 </html>
