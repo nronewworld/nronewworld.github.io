@@ -472,6 +472,7 @@
             word-wrap: break-word;
             overflow-wrap: break-word;
             line-height: 1.6;
+            padding-left: 0 !important;
         }
 
         .system-guide-content strong {
@@ -483,6 +484,37 @@
             word-wrap: break-word;
             overflow-wrap: break-word;
             line-height: 1.4;
+        }
+        
+        /* Fix for detailed settings lists - no bullets */
+        .system-guide-content .update-card ul {
+            list-style: none !important;
+        }
+        
+        .system-guide-content .update-card ul li::before {
+            content: none !important;
+        }
+        
+        /* Override padding for bot guide detailed settings */
+        #system-auto-attack .update-card ul li {
+            padding-left: 0 !important;
+        }
+        
+        #system-auto-attack .update-card ul li::before {
+            content: none !important;
+        }
+        
+        /* Style for ordered lists in quick start */
+        #system-auto-attack .update-card ol li::before {
+            content: none !important;
+        }
+        
+        #system-auto-attack .update-card ol li {
+            padding-left: 10px !important;
+        }
+        
+        #system-auto-attack .update-card ol {
+            counter-reset: item;
         }
     </style>
 </head>
@@ -786,11 +818,11 @@
                     <div class="update-card">
                         <h3>🚀 วิธีเริ่มต้นใช้งาน</h3>
                         <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%); padding: 20px; border-radius: 8px; margin-top: 15px;">
-                            <ol style="padding-left: 20px; color: #555; line-height: 2;">
-                                <li><strong>เปิดเมนู Bot:</strong>กดใช้งาน Auto Attack Item</li>
-                                <li><strong>ตั้งค่าพื้นฐาน:</strong> เลือก "ตั้งค่า" เพื่อปรับแต่งการทำงาน</li>
-                                <li><strong>เปิดใช้งาน:</strong> กดปุ่ม "เปิดระบบ Auto Attack"</li>
-                                <li><strong>ปิดการใช้งาน:</strong> กดปุ่ม "ปิดระบบ Auto Attack"</li>
+                            <ol style="padding-left: 25px; color: #555; line-height: 2; margin: 0;">
+                                <li style="padding: 8px 0; color: #555;"><strong style="color: #667eea;">เปิดเมนู Bot:</strong> กดใช้งาน Auto Attack Item</li>
+                                <li style="padding: 8px 0; color: #555;"><strong style="color: #667eea;">ตั้งค่าพื้นฐาน:</strong> เลือก "ตั้งค่า" เพื่อปรับแต่งการทำงาน</li>
+                                <li style="padding: 8px 0; color: #555;"><strong style="color: #667eea;">เปิดใช้งาน:</strong> กดปุ่ม "เปิดระบบ Auto Attack"</li>
+                                <li style="padding: 8px 0; color: #555;"><strong style="color: #667eea;">ปิดการใช้งาน:</strong> กดปุ่ม "ปิดระบบ Auto Attack"</li>
                             </ol>
                         </div>
                     </div>
