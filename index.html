@@ -737,28 +737,163 @@
                 <div id="system-option-master" class="system-guide-content">
                     <div class="update-card">
                         <h3>🎯 [Option Master] <span class="badge new">NEW</span></h3>
+                        <p style="color: #555; line-height: 1.6; margin-bottom: 15px;">
+                            ระบบเสริมสร้างอุปกรณ์ด้วย Random Option ที่จะทำให้อุปกรณ์ของคุณแข็งแกร่งขึ้น
+                        </p>
+                        
+                        <!-- NPC Image and Basic Info -->
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start; margin-top: 20px;">
                             <div>
-                                <ul>
-                                    <li>สามารถเพิ่ม Option อุปกรณ์ได้</li>
-                                    <li>ใช้เงิน 20000 zeny และ Option Stone 5 ชิ้น 🪙</li>
-                                    <li>โอกาสสำเร็จอยู่ที่ 50%</li>
-                                    <li>จำนวนออพชั่นเพิ่มได้เพียง 1 เท่านั้น(ในช่วงแรก)</li>
-                                </ul>
+                                <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%); padding: 20px; border-radius: 10px; border: 2px solid rgba(102, 126, 234, 0.2);">
+                                    <h4 style="color: #667eea; margin-bottom: 15px; font-size: 16px;">📍 ข้อมูลพื้นฐาน</h4>
+                                    <ul style="list-style: none; padding: 0; margin: 0;">
+                                        <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0; word-wrap: break-word; line-height: 1.6;">
+                                            <strong style="color: #333;">ค่าใช้จ่าย:</strong> <span style="color: #f5576c; font-weight: 600;">20,000 Zeny</span> + <span style="color: #f5576c; font-weight: 600;">5 Option Stone</span>
+                                        </li>
+                                        <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0; word-wrap: break-word; line-height: 1.6;">
+                                            <strong style="color: #333;">โอกาสสำเร็จ:</strong> <span style="color: #43e97b; font-weight: 600;">50%</span>
+                                        </li>
+                                        <li style="padding: 8px 0; border-bottom: 1px solid #e0e0e0; word-wrap: break-word; line-height: 1.6;">
+                                            <strong style="color: #333;">ระดับ Option:</strong> <span style="color: #667eea; font-weight: 600;">3-7%</span> (สุ่ม)
+                                        </li>
+                                        <li style="padding: 8px 0; word-wrap: break-word; line-height: 1.6;">
+                                            <strong style="color: #333;">แถวปัจจุบัน:</strong> <span style="color: #667eea; font-weight: 600;">แถว 1</span> เท่านั้น
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                            <div>
-                                <img src="images/option-master.png" alt="Option Master NPC" style="width: 100%; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); border: 3px solid #667eea;">
+                            <div style="text-align: center;">
+                                <img src="images/option-master.png" alt="Option Master NPC" style="width: 100%; max-width: 300px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); border: 3px solid #667eea;">
+                                <p style="color: #667eea; font-weight: 600; margin-top: 10px;">Option Master NPC</p>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Equipment Types -->
                     <div class="update-card">
-                        <h3>🔄 System Improvements <span class="badge update">UPDATE</span></h3>
-                        <ul>
-                            <li>เพิ่มระบบ Option Master สำหรับเพิ่มออพชั่นอุปกรณ์</li>
-                            <li>ปรับปรุงระบบการสุ่มออพชั่นให้มีความเสถียร</li>
-                            <li>เพิ่มประสิทธิภาพการทำงานของ NPC</li>
-                        </ul>
+                        <h3>🛡️ อุปกรณ์ที่สามารถเสริม Option ได้</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;">
+                            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 3px solid #667eea; text-align: center;">
+                                <div style="font-size: 32px; margin-bottom: 8px;">🎩</div>
+                                <strong style="color: #667eea;">หมวก</strong>
+                                <p style="font-size: 12px; color: #999; margin: 5px 0 0 0;">Upper Headgear</p>
+                            </div>
+                            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 3px solid #667eea; text-align: center;">
+                                <div style="font-size: 32px; margin-bottom: 8px;">🛡️</div>
+                                <strong style="color: #667eea;">เสื้อเกราะ</strong>
+                                <p style="font-size: 12px; color: #999; margin: 5px 0 0 0;">Armor</p>
+                            </div>
+                            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 3px solid #667eea; text-align: center;">
+                                <div style="font-size: 32px; margin-bottom: 8px;">⚔️</div>
+                                <strong style="color: #667eea;">อาวุธ</strong>
+                                <p style="font-size: 12px; color: #999; margin: 5px 0 0 0;">Weapon (Right Hand)</p>
+                            </div>
+                            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 3px solid #667eea; text-align: center;">
+                                <div style="font-size: 32px; margin-bottom: 8px;">🛡️</div>
+                                <strong style="color: #667eea;">โล่</strong>
+                                <p style="font-size: 12px; color: #999; margin: 5px 0 0 0;">Shield (Left Hand)</p>
+                            </div>
+                            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 3px solid #667eea; text-align: center;">
+                                <div style="font-size: 32px; margin-bottom: 8px;">🧥</div>
+                                <strong style="color: #667eea;">ผ้าคลุม</strong>
+                                <p style="font-size: 12px; color: #999; margin: 5px 0 0 0;">Garment</p>
+                            </div>
+                            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 3px solid #667eea; text-align: center;">
+                                <div style="font-size: 32px; margin-bottom: 8px;">👢</div>
+                                <strong style="color: #667eea;">รองเท้า</strong>
+                                <p style="font-size: 12px; color: #999; margin: 5px 0 0 0;">Shoes</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- How It Works -->
+                    <div class="update-card">
+                        <h3>🔧 วิธีการใช้งาน</h3>
+                        <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%); padding: 20px; border-radius: 8px; margin-top: 15px;">
+                            <ol style="padding-left: 25px; color: #555; line-height: 2; margin: 0;">
+                                <li style="padding: 8px 0; color: #555;"><strong style="color: #667eea;">เตรียมอุปกรณ์:</strong> สวมใส่อุปกรณ์ที่ต้องการเสริม Option</li>
+                                <li style="padding: 8px 0; color: #555;"><strong style="color: #667eea;">เตรียมไอเทม:</strong> มี Option Stone 15 ชิ้น และ Zeny 200,000</li>
+                                <li style="padding: 8px 0; color: #555;"><strong style="color: #667eea;">คุยกับ NPC:</strong> พูดกับ Option Master ที่ Morocco (152, 54)</li>
+                                <li style="padding: 8px 0; color: #555;"><strong style="color: #667eea;">เลือกอุปกรณ์:</strong> เลือกชิ้นส่วนที่ต้องการเสริม Option</li>
+                                <li style="padding: 8px 0; color: #555;"><strong style="color: #667eea;">ยืนยัน:</strong> ยืนยันการเสริม Option และรอผลลัพธ์</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <!-- Important Notes -->
+                    <div class="update-card" style="border-left-color: #ffc107; background: rgba(255, 193, 7, 0.05);">
+                        <h3>⚠️ ข้อควรระวังและข้อมูลสำคัญ</h3>
+                        <div style="padding: 10px 0;">
+                            <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                                <p style="color: #856404; margin: 0 0 10px 0; font-weight: 600;">📌 เกี่ยวกับแถว 1 (Row 1):</p>
+                                <ul style="color: #856404; line-height: 1.8; padding-left: 20px; margin: 0;">
+                                    <li>สามารถเสริม Option ทับเดิมได้ (Re-roll)</li>
+                                    <li>ถ้ามี Option แถว 1 อยู่แล้ว สามารถสุ่มใหม่ได้</li>
+                                    <li>Option เดิมจะหายหากเสริมทับ</li>
+                                    <li>โอกาสสำเร็จ 50% ต่อการสุ่มแต่ละครั้ง</li>
+                                </ul>
+                            </div>
+
+                            <div style="background: #f8d7da; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                                <p style="color: #721c24; margin: 0 0 10px 0; font-weight: 600;">❌ หากล้มเหลว:</p>
+                                <ul style="color: #721c24; line-height: 1.8; padding-left: 20px; margin: 0;">
+                                    <li><strong>Option เดิมจะหาย</strong> (สำหรับแถว 1)</li>
+                                    <li>ไอเทมและ Zeny ที่ใช้จะหายไป</li>
+                                    <li>อุปกรณ์ไม่ได้รับความเสียหาย (ไม่แตก)</li>
+                                </ul>
+                            </div>
+
+                            <div style="background: #d4edda; padding: 15px; border-radius: 8px;">
+                                <p style="color: #155724; margin: 0 0 10px 0; font-weight: 600;">✅ หากสำเร็จ:</p>
+                                <ul style="color: #155724; line-height: 1.8; padding-left: 20px; margin: 0;">
+                                    <li>ได้รับ Random Option แถว 1</li>
+                                    <li>ระดับ Option สุ่มระหว่าง <strong>3-7%</strong></li>
+                                    <li>Option ที่ได้จะแตกต่างกันตามประเภทอุปกรณ์</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Future Plans -->
+                    <div class="update-card" style="border-left-color: #764ba2; background: linear-gradient(135deg, rgba(102, 126, 234, 0.03) 0%, rgba(118, 75, 162, 0.03) 100%);">
+                        <h3>🔮 แผนการพัฒนาในอนาคต</h3>
+                        <div style="padding: 15px; background: white; border-radius: 8px; margin-top: 15px;">
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px;">
+                                <div style="border-left: 3px solid #667eea; padding-left: 15px;">
+                                    <h4 style="color: #667eea; margin: 0 0 8px 0;">📈 Option แถว 2-3</h4>
+                                    <p style="color: #555; font-size: 14px; margin: 0; line-height: 1.6;">
+                                        ในอนาคตจะเปิดให้เสริม Option ได้ถึง 3 แถว ทำให้อุปกรณ์แข็งแกร่งยิ่งขึ้น
+                                    </p>
+                                </div>
+                                <div style="border-left: 3px solid #43e97b; padding-left: 15px;">
+                                    <h4 style="color: #43e97b; margin: 0 0 8px 0;">🎲 ระบบสุ่มใหม่</h4>
+                                    <p style="color: #555; font-size: 14px; margin: 0; line-height: 1.6;">
+                                        แถว 2-3 จะมีระบบสุ่มใหม่ที่แตกต่างจากแถว 1
+                                    </p>
+                                </div>
+                                <div style="border-left: 3px solid #ffc107; padding-left: 15px;">
+                                    <h4 style="color: #ffc107; margin: 0 0 8px 0;">⚡ Option พิเศษ</h4>
+                                    <p style="color: #555; font-size: 14px; margin: 0; line-height: 1.6;">
+                                        อาจมี Option พิเศษที่หายากและมีพลังมากขึ้น
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tips -->
+                    <div class="update-card" style="border-left-color: #17a2b8;">
+                        <h3>💡 เคล็ดลับและคำแนะนำ</h3>
+                        <div style="background: #d1ecf1; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                            <ul style="color: #0c5460; line-height: 1.8; padding-left: 20px; margin: 0;">
+                                <li>เก็บ Option Stone ไว้ให้มากพอก่อนเสริม</li>
+                                <li>ควรมี Zeny สำรองเพื่อเสริมหลายๆ ครั้ง</li>
+                                <li>Option แถว 1 สามารถสุ่มใหม่ได้ถ้าไม่พอใจ</li>
+                                <li>ระดับ Option 7% ถือว่าดีมาก ควรเก็บไว้</li>
+                                <li>ควรเสริมอุปกรณ์หลักก่อน (อาวุธ, เกราะ)</li>
+                                <li>Option ที่ได้จะแตกต่างกันตามประเภทอุปกรณ์</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
